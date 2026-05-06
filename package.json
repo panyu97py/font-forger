@@ -1,0 +1,20 @@
+{
+  "name": "font-forger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clear-dist": "rm -rf dist && pnpm -r exec rm -rf dist",
+    "clear-all": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
+    "build": "pnpm clear-dist && pnpm --filter @font-forger/* build",
+    "publish": "pnpm --filter @font-forger/* publish",
+    "version": "lerna version"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "lerna": "^9.0.3"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@font-forger/taro",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panyu97py/font-forger.git"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "yu.pan",
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
+  "peerDependencies": {
+
+  },
+  "devDependencies": {
+    "@taro-minify-pack/plugin-async-pack": "^0.1.4-alpha.0",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^8.19.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+  }
+}
