@@ -27,7 +27,7 @@ pex fonttools brotli zopfli -o pyftsubset.pex -m fontTools.subset
 
 ### 使用方式
 ```bash
-./pyftsubset.pex font.ttf --text="Hello World" --output-file=subset.ttf
+python ./pyftsubset.pex font.ttf --text="Hello World" --output-file=subset.ttf
 ```
 
 
@@ -57,5 +57,5 @@ pex fonttools -D . -m pyftschars -o pyftschars.pex
 ### 使用方式
 
 ```bash
-./pyftschars.pex ./font.ttf
+python ./pyftschars.pex ./font.ttf
 ```

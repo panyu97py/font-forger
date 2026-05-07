@@ -3,6 +3,8 @@ import { PYFTCHARS_PEX, PYFTSUBSET_PEX } from './constants'
 import { camelToDash } from './utils'
 import { SubsetFontOpt } from './types'
 
+export * from './types'
+
 /**
  * 拆分字体
  * @param opt

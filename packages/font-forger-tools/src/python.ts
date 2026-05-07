@@ -1,8 +1,7 @@
 import fs from 'fs'
 import { spawn } from 'child_process'
 import os from 'os'
-import { FRAMES, PYTHON_VERSION, RELEASE } from './constants'
-import findCacheDirectory from 'find-cache-directory'
+import { CACHE_DIR, FRAMES, PYTHON_VERSION, RELEASE } from './constants'
 import path from 'path'
 import got from 'got'
 import { pipeline } from 'stream/promises'
@@ -44,19 +43,14 @@ export const getDownloadUrl = () => {
  * 获取 python 运行时环境可执行文件路径
  */
 export const getPythonExecutable = () => {
-  const cacheDirectory = findCacheDirectory({ name: 'font-forger' })
-  if (!cacheDirectory) throw new Error('cache directory not found')
   const platform = os.platform()
-  const runtimeDir = path.join(cacheDirectory, 'python')
+  const runtimeDir = path.join(CACHE_DIR, 'python')
   if (platform === 'win32') return path.join(runtimeDir, 'python.exe')
   return path.join(runtimeDir, 'bin', 'python3')
 }
 
 export const downloadPythonRuntime = async () => {
   const url = getDownloadUrl()
-  const cacheDirectory = findCacheDirectory({ name: 'font-forger' })
-  if (!cacheDirectory) throw new Error('cache directory not found')
-
   const stream = got.stream(url)
   const listener = (data:any) => {
     const percent = Math.floor(data.percent * 100)
@@ -68,10 +62,10 @@ export const downloadPythonRuntime = async () => {
   }
   stream.on('downloadProgress', listener)
 
-  const tarFilePath = path.join(cacheDirectory, 'python.tar.gz')
-  await fs.promises.mkdir(cacheDirectory, { recursive: true })
+  const tarFilePath = path.join(CACHE_DIR, 'python.tar.gz')
+  await fs.promises.mkdir(CACHE_DIR, { recursive: true })
   await pipeline(stream, fs.createWriteStream(tarFilePath))
-  await tar.x({ file: tarFilePath, cwd: cacheDirectory })
+  await tar.x({ file: tarFilePath, cwd: CACHE_DIR })
 }
 
 /**
