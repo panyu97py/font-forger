@@ -20,6 +20,7 @@
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "@types/object-hash": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
     "eslint": "^8.19.0",
@@ -30,8 +31,11 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@font-forger/tools": "workspace:*",
+    "crypto": "^1.0.1",
+    "find-cache-directory": "^6.0.0",
+    "object-hash": "^3.0.0",
     "postcss": "^8.5.14",
-    "postcss-value-parser": "^4.2.0",
-    "@font-forger/tools":  "workspace:*"
+    "postcss-value-parser": "^4.2.0"
   }
 }

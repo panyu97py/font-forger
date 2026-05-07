@@ -1,5 +1,5 @@
-import {FontConfig} from "./types";
+import { FontConfig } from './types'
 
 export const parseFontFace = (fontFace: string): FontConfig => {
-    return {} as FontConfig;
+  return {} as FontConfig
 }
