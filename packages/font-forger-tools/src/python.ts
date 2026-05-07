@@ -83,7 +83,11 @@ export const runPython = async (args: string[]) => {
 
   if (!fs.existsSync(pythonExecutable)) await downloadPythonRuntime()
 
-  const child = spawn(pythonExecutable, args, { stdio: 'inherit' })
+  return new Promise((resolve, reject) => {
+    const child = spawn(pythonExecutable, args, { stdio: 'pipe' })
 
-  child.on('exit', (code) => console.log('exit:', code))
+    child.stdout.on('data', (data) => resolve(data.toString()))
+
+    child.stderr.on('data', (data) => reject(data.toString()))
+  })
 }
