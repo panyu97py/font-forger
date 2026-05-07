@@ -1,14 +1,17 @@
 import { runPython } from './python'
 import { PYFTCHARS_PEX, PYFTSUBSET_PEX } from './constants'
+import { camelToDash } from './utils'
+import { SubsetFontOpt } from './types'
 
 /**
  * 拆分字体
- * @param fontPath
- * @param text
- * @param output
+ * @param opt
  */
-export const splitFont = async (fontPath: string, text: string, output: string) => {
-  await runPython([PYFTSUBSET_PEX, fontPath, `--text="${text}"`, `--output-file=${output}`])
+export const subsetFont = async (opt:SubsetFontOpt) => {
+  const { fontPath, text, ...rest } = opt
+  const args = Object.keys(rest).map(key => `--${camelToDash(key)}=${rest[key] || ''}`)
+  if (text) args.push(`--text="${text}"`)
+  await runPython([PYFTSUBSET_PEX, fontPath, ...args])
 }
 
 /**
