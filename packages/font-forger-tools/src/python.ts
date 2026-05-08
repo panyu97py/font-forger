@@ -83,5 +83,10 @@ export const runPython = async (args: string[]) => {
     child.stdout.on('data', (data) => resolve(data.toString()))
 
     child.stderr.on('data', (data) => reject(data.toString()))
+
+    child.on('close', (code) => {
+      if (code !== 0) reject(new Error(`python script exit with code ${code}`))
+      else resolve('')
+    })
   })
 }
