@@ -68,6 +68,12 @@ export const downloadPythonRuntime = async () => {
   await tar.x({ file: tarFilePath, cwd: CACHE_DIR })
 }
 
+export const ensurePythonRuntime = () => {
+  const pythonExecutable = getPythonExecutable()
+  if (fs.existsSync(pythonExecutable)) return Promise.resolve()
+  return downloadPythonRuntime()
+}
+
 /**
  * 执行 python 脚本
  * @param args python 脚本参数

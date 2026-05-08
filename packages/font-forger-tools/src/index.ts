@@ -4,6 +4,7 @@ import { camelToDash } from './utils'
 import { SubsetFontOpt } from './types'
 
 export * from './types'
+export { ensurePythonRuntime } from './python'
 
 /**
  * 拆分字体

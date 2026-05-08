@@ -1,10 +1,10 @@
-import { getFontChars, subsetFont, SubsetFontOpt } from '@font-forger/tools'
+import { ensurePythonRuntime, getFontChars, subsetFont, SubsetFontOpt } from '@font-forger/tools'
 import { SplitFontOpt, SplitFontPlan } from './types'
+import { createLoading, fileHash } from './utils'
 import { DEFAULT_REMAINING_CHUNK_SIZE, SPLIT_FONT_ASSET_PATH } from './constants'
 import objectHash from 'object-hash'
 import path from 'path'
 import fs from 'fs'
-import { fileHash } from './utils'
 
 const splitFontByPlan = (options: SplitFontOpt) => {
   const { fontPath, plans = [] } = options
@@ -56,6 +56,15 @@ const generateSplitPlan = async (options: SplitFontOpt): Promise<SplitFontPlan[]
 }
 
 export const splitFont = async (options: SplitFontOpt) => {
-  const finalSplitPlan = await generateSplitPlan(options)
-  return splitFontByPlan({ ...options, plans: finalSplitPlan })
+  await ensurePythonRuntime()
+  const { startLoading, stopLoading } = createLoading()
+  try {
+    startLoading('Split font...')
+    const finalSplitPlan = await generateSplitPlan(options)
+    await splitFontByPlan({ ...options, plans: finalSplitPlan })
+    stopLoading('Split font done', true)
+  } catch (error) {
+    stopLoading('Split font failed', false)
+    throw error
+  }
 }
