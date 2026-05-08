@@ -168,6 +168,9 @@ importers:
       find-cache-directory:
         specifier: ^6.0.0
         version: 6.0.0
+      got:
+        specifier: ^11.0.5
+        version: 11.8.6
       object-hash:
         specifier: ^3.0.0
         version: 3.0.0
