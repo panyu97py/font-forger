@@ -190,6 +190,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.26.1
         version: 8.59.2(eslint@8.57.1)(typescript@5.9.3)
+      cpx:
+        specifier: ^1.5.0
+        version: 1.5.0
       eslint:
         specifier: ^8.19.0
         version: 8.57.1

@@ -11,8 +11,8 @@ const splitFontByPlan = (options: SplitFontOpt) => {
   return Promise.all(plans.map(async plan => {
     const fontHash = await fileHash(fontPath)
     fs.mkdirSync(path.join(SPLIT_FONT_ASSET_PATH, fontHash), { recursive: true })
-    const output = path.join(SPLIT_FONT_ASSET_PATH, fontHash, objectHash(plan))
-    return subsetFont({ ...plan, fontPath, output } as SubsetFontOpt)
+    const outputFile = path.join(SPLIT_FONT_ASSET_PATH, fontHash, `${objectHash(plan)}.${plan.flavor || 'ttf'}`)
+    return subsetFont({ ...plan, fontPath, outputFile } as SubsetFontOpt)
   }))
 }
 
@@ -26,7 +26,7 @@ const generateSplitPlan = async (options: SplitFontOpt): Promise<SplitFontPlan[]
   const currentChunkTexts = new Set(currentPlans.reduce((result, item) => {
     const { test, textFile, unicodes = '' } = item
     const textFileContent = fs.readFileSync(textFile, 'utf-8')
-    const unicodeChars = unicodes.split(',').flatMap((item:string) => {
+    const unicodeChars = unicodes.split(',').filter(Boolean).flatMap((item:string) => {
       const segment = item.trim().replace(/^U\+|\s+/gi, '')
       // 单个: U+4E00
       if (!segment.includes('-')) return [String.fromCodePoint(parseInt(segment, 16))]

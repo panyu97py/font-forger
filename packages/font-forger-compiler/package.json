@@ -12,7 +12,7 @@
     "url": "git+https://github.com/panyu97py/font-forger.git"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && cpx \"src/**/*.txt\" dist"
   },
   "keywords": [],
   "author": "yu.pan",
@@ -23,6 +23,7 @@
     "@types/object-hash": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
+    "cpx": "^1.5.0",
     "eslint": "^8.19.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
