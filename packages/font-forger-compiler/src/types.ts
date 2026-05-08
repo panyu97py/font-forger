@@ -19,4 +19,5 @@ export type SplitFontPlan = Omit<SubsetFontOpt, 'fontPath'|'output'>
 export interface SplitFontOpt {
     fontPath:string
     plans?: SplitFontPlan[]
+    remainingChunkSize?: number
 }
