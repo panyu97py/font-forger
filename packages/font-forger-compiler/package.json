@@ -18,6 +18,9 @@
   "author": "yu.pan",
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
+  "peerDependencies": {
+    "webpack": "^5.0.0"
+  },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@types/object-hash": "^3.0.6",
@@ -29,7 +32,8 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "webpack": "5.91.0"
   },
   "dependencies": {
     "@font-forger/tools": "workspace:*",
@@ -38,6 +42,8 @@
     "got": "^11.0.5",
     "object-hash": "^3.0.0",
     "postcss": "^8.5.14",
-    "postcss-value-parser": "^4.2.0"
+    "postcss-value-parser": "^4.2.0",
+    "tapable": "^2.3.3",
+    "webpack-sources": "^3.4.1"
   }
 }

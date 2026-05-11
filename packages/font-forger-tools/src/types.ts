@@ -2,7 +2,7 @@ export enum Flavor{
     WOFF2 = 'woff2',
     WOFF = 'woff3',
 }
-export interface SubsetFontOpt extends Record<string, any> {
+export interface SubsetFontOpt {
     fontPath:string
     outputFile:string
     textFile?:string

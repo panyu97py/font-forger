@@ -12,7 +12,7 @@ export { ensurePythonRuntime } from './python'
  */
 export const subsetFont = async (opt:SubsetFontOpt) => {
   const { fontPath, text, ...rest } = opt
-  const args = Object.keys(rest).map(key => `--${camelToDash(key)}=${rest[key] || ''}`)
+  const args = Object.keys(rest).map((key) => `--${camelToDash(key)}=${String(rest[key as keyof typeof rest]) || ''}`)
   if (text) args.push(`--text="${text}"`)
   await runPython([PYFTSUBSET_PEX, fontPath, ...args])
 }

@@ -1,4 +1,5 @@
-import { SubsetFontOpt } from '@font-forger/tools'
+import { Flavor, SubsetFontOpt } from '@font-forger/tools'
+import { Source } from 'webpack-sources'
 
 export interface FontSource {
     url?: string;
@@ -14,10 +15,14 @@ export interface FontConfig {
     unicodeRange?: string
 }
 
-export type SplitFontPlan = Omit<SubsetFontOpt, 'fontPath'|'output'>
+export type SplitFontPlan = Omit<SubsetFontOpt, 'fontPath'|'outputFile'|'flavor'>
 
 export interface SplitFontOpt {
     fontPath:string
+    flavor?: Flavor
     plans?: SplitFontPlan[]
+    splitRemainder?: boolean
     remainingChunkSize?: number
 }
+
+export type CompilationAssets = Record<string, Source>;
