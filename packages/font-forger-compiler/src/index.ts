@@ -34,7 +34,7 @@ const defaultOptions: FontForgerPluginOptions = {
   remainingChunkSize: DEFAULT_REMAINING_CHUNK_SIZE,
   flavor: Flavor.WOFF2,
   resolver: async (filePath) => Promise.resolve(filePath),
-  test: (_) => true
+  test: (_) => false
 }
 
 export class FontForgerPlugin {

@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@taro-minify-pack/plugin-async-pack": "^0.1.4-alpha.0",
+    "@tarojs/service": "3.6.39",
     "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
@@ -31,7 +32,8 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "webpack": "5.91.0"
   },
   "dependencies": {
     "@font-forger/compiler":  "workspace:*"
