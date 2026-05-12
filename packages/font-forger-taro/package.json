@@ -1,6 +1,6 @@
 {
   "name": "@font-forger/taro",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,8 +19,8 @@
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
   "peerDependencies": {
-    "webpack": "^5.0.0",
-    "@taro-minify-pack/plugin-async-pack": "^0.1.4"
+    "@taro-minify-pack/plugin-async-pack": "^0.1.4",
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@taro-minify-pack/plugin-async-pack": "^0.1.4-alpha.2",
@@ -37,7 +37,7 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
-    "@font-forger/compiler":  "workspace:*",
+    "@font-forger/compiler": "workspace:*",
     "postcss": "^8.5.14"
   }
 }
