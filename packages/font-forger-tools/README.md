@@ -49,7 +49,7 @@ print(''.join(chr(cp) for cp in font.getBestCmap().keys()))
 ```
 
 ### 构建 PEX
-
+> 需要保证当前目录下只有`pyftschars.py`不然会把其他产物也打包进去会很大
 ```bash
 pex fonttools -D . -m pyftschars -o pyftschars.pex
 ```
