@@ -1,5 +1,5 @@
 import path from 'path'
-import findCacheDirectory from 'find-cache-directory'
+import findCacheDirectory from 'find-cache-dir'
 
 /**
  * 缓存目录

@@ -38,7 +38,7 @@
   "dependencies": {
     "@font-forger/tools": "workspace:*",
     "crypto": "^1.0.1",
-    "find-cache-directory": "^6.0.0",
+    "find-cache-dir": "^5.0.0",
     "got": "^11.0.5",
     "object-hash": "^3.0.0",
     "postcss": "^8.5.14",

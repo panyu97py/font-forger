@@ -31,7 +31,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "find-cache-directory": "^6.0.0",
+    "find-cache-dir": "^5.0.0",
     "got": "^11.0.5",
     "tar": "^7.5.14"
   }
