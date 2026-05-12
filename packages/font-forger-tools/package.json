@@ -20,6 +20,7 @@
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "@types/tar": "^6.1.13",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
     "cpx": "^1.5.0",
@@ -33,6 +34,6 @@
   "dependencies": {
     "find-cache-dir": "^5.0.0",
     "got": "^11.0.5",
-    "tar": "^7.5.14"
+    "tar": "^6.2.1"
   }
 }
