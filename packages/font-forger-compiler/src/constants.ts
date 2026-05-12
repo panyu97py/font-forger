@@ -1,5 +1,5 @@
 import path from 'path'
-import findCacheDirectory from 'find-cache-dir'
+import { findCacheDirectory } from '@font-forger/helper'
 
 /**
  * 缓存目录

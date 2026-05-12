@@ -1,5 +1,5 @@
 {
-  "name": "@font-forger/tools",
+  "name": "@font-forger/helper",
   "version": "0.0.1-alpha.2",
   "description": "",
   "main": "dist/index.js",
@@ -12,18 +12,16 @@
     "url": "git+https://github.com/panyu97py/font-forger.git"
   },
   "scripts": {
-    "build": "tsc && cpx \"src/**/*.pex\" dist"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "yu.pan",
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "@types/tar": "^6.1.13",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
-    "cpx": "^1.5.0",
+    "@types/node": "^25.6.0",
     "eslint": "^8.19.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -32,8 +30,5 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@font-forger/helper": "workspace:*",
-    "got": "^11.0.5",
-    "tar": "^6.2.1"
   }
 }
