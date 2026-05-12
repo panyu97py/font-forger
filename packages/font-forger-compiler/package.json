@@ -33,7 +33,7 @@
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
     "typescript": "^5.8.2",
-    "webpack": "5.91.0"
+    "webpack": "^5.0.0"
   },
   "dependencies": {
     "@font-forger/tools": "workspace:*",

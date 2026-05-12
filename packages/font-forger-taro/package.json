@@ -19,10 +19,11 @@
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
   "peerDependencies": {
-
+    "webpack": "^5.0.0",
+    "@taro-minify-pack/plugin-async-pack": "^0.1.4"
   },
   "devDependencies": {
-    "@taro-minify-pack/plugin-async-pack": "^0.1.4-alpha.0",
+    "@taro-minify-pack/plugin-async-pack": "^0.1.4-alpha.2",
     "@tarojs/service": "3.6.39",
     "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
@@ -33,9 +34,10 @@
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
     "typescript": "^5.8.2",
-    "webpack": "5.91.0"
+    "webpack": "^5.0.0"
   },
   "dependencies": {
-    "@font-forger/compiler":  "workspace:*"
+    "@font-forger/compiler":  "workspace:*",
+    "postcss": "^8.5.14"
   }
 }

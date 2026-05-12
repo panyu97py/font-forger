@@ -5,7 +5,7 @@ export const buildFontFace = (fontFaceConfigList: FontConfig[]) => {
   return fontFaceConfigList.map((fontFaceConfig) => {
     const root = postcss.root()
     const fontFaceRule = postcss.atRule({ name: 'font-face' })
-    root.append(fontFaceRule)
+
     fontFaceRule.append(postcss.decl({ prop: 'font-family', value: fontFaceConfig.family }))
     if (fontFaceConfig.weight) fontFaceRule.append(postcss.decl({ prop: 'font-weight', value: fontFaceConfig.weight }))
     if (fontFaceConfig.style) fontFaceRule.append(postcss.decl({ prop: 'font-style', value: fontFaceConfig.style }))
@@ -19,6 +19,8 @@ export const buildFontFace = (fontFaceConfigList: FontConfig[]) => {
     }).filter(Boolean).join(', ')
 
     if (sourceText) fontFaceRule.append(postcss.decl({ prop: 'src', value: sourceText }))
+
+    root.append(fontFaceRule)
 
     const code = root.toString()
 

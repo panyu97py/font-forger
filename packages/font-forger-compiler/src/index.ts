@@ -1,4 +1,4 @@
-import { CompilationAssets, FontConfig, SplitFontOpt } from './types'
+import { FontConfig, SplitFontOpt } from './types'
 import { Compilation, Compiler } from 'webpack'
 import { SyncHook } from 'tapable'
 import { DEFAULT_REMAINING_CHUNK_SIZE } from './constants'
@@ -11,11 +11,11 @@ import { buildFontFace } from './build-font-face'
 
 export interface FontFaceSplitAssets{
   assetName:string,
-  assets:CompilationAssets
   splitFontFace:ReturnType<typeof buildFontFace>
 }
 
 export interface ProcessFontFaceSplitOpt{
+  match: (family: string) => boolean
   fontFaceSplitAssets:FontFaceSplitAssets[]
 }
 
@@ -24,7 +24,7 @@ export interface Hooks {
 }
 
 export interface FontForgerPluginOptions extends Omit<SplitFontOpt, 'fontPath'>{
-    test: (family: string) => boolean
+    match: (family: string) => boolean
     resolver:(filePath:string)=>Promise<string>
 }
 
@@ -34,7 +34,7 @@ const defaultOptions: FontForgerPluginOptions = {
   remainingChunkSize: DEFAULT_REMAINING_CHUNK_SIZE,
   flavor: Flavor.WOFF2,
   resolver: async (filePath) => Promise.resolve(filePath),
-  test: (_) => false
+  match: (_) => false
 }
 
 export class FontForgerPlugin {
@@ -57,7 +57,7 @@ export class FontForgerPlugin {
   }
 
   apply (compiler: Compiler) {
-    const { resolver, test, ...splitFontOpt } = this.options
+    const { resolver, match, ...splitFontOpt } = this.options
     compiler.hooks.thisCompilation.tap(FontForgerPlugin.pluginName, (compilation: Compilation) => {
       const hooks = FontForgerPlugin.getCompilationHooks(compilation)
 
@@ -69,7 +69,7 @@ export class FontForgerPlugin {
           const asset = compilation.getAsset(assetName)
           if (!asset || !/\.(css|acss|ttss|wxss)$/.test(assetName)) return result
           const cssSource = asset.source.source().toString()
-          const tempFontConfigList = parseFontFace(cssSource).filter(item => test(item.family || ''))
+          const tempFontConfigList = parseFontFace(cssSource).filter(item => match(item.family || ''))
           if (!tempFontConfigList.length) return result
           return { ...result, [assetName]: tempFontConfigList }
         }, {})
@@ -120,10 +120,10 @@ export class FontForgerPlugin {
           // 构建 font-face 样式
           const splitFontFace = buildFontFace(splitFontConfigList as FontConfig[])
 
-          return { splitFontFace, assetName, assets } as FontFaceSplitAssets
+          return { splitFontFace, assetName }
         }))
 
-        hooks?.processFontFaceSplit.call({ fontFaceSplitAssets })
+        hooks?.processFontFaceSplit.call({ match, fontFaceSplitAssets } as ProcessFontFaceSplitOpt)
       })
     })
   }

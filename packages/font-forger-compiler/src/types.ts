@@ -1,5 +1,4 @@
 import { Flavor, SubsetFontOpt } from '@font-forger/tools'
-import { Source } from 'webpack-sources'
 
 export interface FontSource {
     url?: string;
@@ -24,5 +23,3 @@ export interface SplitFontOpt {
     splitRemainder?: boolean
     remainingChunkSize?: number
 }
-
-export type CompilationAssets = Record<string, Source>;
