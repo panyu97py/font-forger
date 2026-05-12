@@ -1,6 +1,6 @@
 {
   "name": "@font-forger/helper",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,9 @@
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
-    "@types/node": "^25.6.0",
     "eslint": "^8.19.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -29,6 +29,5 @@
     "eslint-plugin-promise": "^6.0.0",
     "typescript": "^5.8.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
