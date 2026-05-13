@@ -34,6 +34,7 @@
   "dependencies": {
     "@font-forger/helper": "workspace:*",
     "got": "^11.0.5",
+    "p-limit": "^7.3.0",
     "tar": "^6.2.1"
   }
 }

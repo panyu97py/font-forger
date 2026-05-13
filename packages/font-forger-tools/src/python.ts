@@ -6,6 +6,9 @@ import path from 'path'
 import got from 'got'
 import { pipeline } from 'stream/promises'
 import * as tar from 'tar'
+import pLimit from 'p-limit'
+
+const limit = pLimit(Math.max(1, os.cpus().length - 1))
 
 /**
  * 获取当前系统架构
@@ -78,21 +81,27 @@ export const ensurePythonRuntime = () => {
  * 执行 python 脚本
  * @param args python 脚本参数
  */
-export const runPython = async (args: string[]) => {
-  const pythonExecutable = getPythonExecutable()
+export const runPython = (args: string[]) => {
+  return limit(async () => {
+    const pythonExecutable = getPythonExecutable()
 
-  if (!fs.existsSync(pythonExecutable)) await downloadPythonRuntime()
+    if (!fs.existsSync(pythonExecutable)) await downloadPythonRuntime()
 
-  return new Promise<string>((resolve, reject) => {
-    const child = spawn(pythonExecutable, args, { stdio: 'pipe' })
+    return new Promise<string>((resolve, reject) => {
+      const child = spawn(pythonExecutable, args, { stdio: 'pipe' })
 
-    child.stdout.on('data', (data) => resolve(data.toString()))
+      let stdout = ''
 
-    child.stderr.on('data', (data) => reject(data.toString()))
+      let stderr = ''
 
-    child.on('close', (code) => {
-      if (code !== 0) reject(new Error(`python script exit with code ${code}`))
-      else resolve('')
+      child.stdout.on('data', (data) => (stdout += data.toString()))
+
+      child.stderr.on('data', (data) => (stderr += data.toString()))
+
+      child.on('close', (code) => {
+        if (code !== 0) reject(new Error(stderr || `python script exit with code ${code}`))
+        else resolve(stdout)
+      })
     })
   })
 }
