@@ -40,3 +40,15 @@ export const createLoading = () => {
 
   return { startLoading, stopLoading }
 }
+
+export const MapGroupBy = <T, K>(items: Iterable<T>, keyFn: (item: T) => K): Map<K, T[]> => {
+  const map = new Map<K, T[]>()
+
+  Array.from(items).forEach(item => {
+    const key = keyFn(item)
+    if (!map.has(key)) map.set(key, [])
+    map.get(key)?.push(item)
+  })
+
+  return map
+}

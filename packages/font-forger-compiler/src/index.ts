@@ -8,6 +8,7 @@ import { loadFontAsset } from './load-font-asset'
 import { splitFont } from './split-font'
 import { Flavor } from '@font-forger/tools'
 import { buildFontFace } from './build-font-face'
+import { MapGroupBy } from './utils'
 
 export interface FontFaceSplitAssets{
   assetName:string,
@@ -101,7 +102,7 @@ export class FontForgerPlugin {
               return fontFaceListSplitResMap.get(source.url) || []
             })
 
-            const planSourceMap = Map.groupBy(splitSources, item => item.planId)
+            const planSourceMap = MapGroupBy(splitSources, item => item.planId)
 
             return Array.from(planSourceMap.values()).map(sourceList => ({ meta: rest, sourceList }))
           })
